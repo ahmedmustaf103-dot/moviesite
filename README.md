@@ -4,6 +4,29 @@ A responsive movie discovery app powered by **[The Movie Database (TMDB)](https:
 
 **Repository:** [github.com/ahmedmustaf103-dot/moviesite](https://github.com/ahmedmustaf103-dot/moviesite)
 
+## Live demo
+
+**[▶ Open live app →](https://moviesite-tau-lake.vercel.app)** — hosted on [Vercel](https://vercel.com).
+
+**Deploy in one click** (set `VITE_TMDB_API_KEY` in the host’s environment when asked):
+
+| Platform | Action |
+| -------- | ------ |
+| **Vercel** | [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fahmedmustaf103-dot%2Fmoviesite&env=VITE_TMDB_API_KEY&envDescription=Get%20a%20free%20key%20at%20themoviedb.org%2Fsettings%2Fapi&envLink=https%3A%2F%2Fwww.themoviedb.org%2Fsettings%2Fapi) |
+| **Netlify** | [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/ahmedmustaf103-dot/moviesite) |
+
+On Netlify, add **`VITE_TMDB_API_KEY`** under **Site configuration → Environment variables** (and redeploy if needed).
+
+### Deployed site shows no movies / empty trending
+
+Vite **inlines** `VITE_TMDB_API_KEY` when you run **`npm run build`**. If the variable was missing during that build, the live site has no key forever until you rebuild.
+
+1. **Vercel:** Project → **Settings** → **Environment Variables** → add `VITE_TMDB_API_KEY` (your TMDB key). Turn it on for **Production** and **Preview** (and Development if you use Vercel CLI builds).
+2. Go to **Deployments** → open the latest deployment → **⋯** → **Redeploy** (do not use the old build cache if offered a choice to skip — you need a **new** build).
+3. Wait for the build to finish, then hard-refresh the live URL.
+
+The name must be exactly **`VITE_TMDB_API_KEY`** (not `TMDB_API_KEY`).
+
 ---
 
 ## Features
@@ -13,7 +36,7 @@ A responsive movie discovery app powered by **[The Movie Database (TMDB)](https:
 - **Detail pages** — Cast, director, runtime, overview, and regional “where to watch” (configurable with `VITE_WATCH_REGION`).
 - **Watchlist** — Saved in `localStorage` (device-only).
 - **UX** — Loading and error states, optional view transitions (where supported), light/dark theme, poster blur placeholders (TMDB w92 → full image).
-- **Quality** — React error boundary, dev-only banner if the API key is missing, `AbortController` on network calls, route-level code splitting (`React.lazy` + `Suspense`).
+- **Quality** — React error boundary, banner when the API key is missing (dev + production hints), `AbortController` on network calls, route-level code splitting (`React.lazy` + `Suspense`).
 
 ---
 
